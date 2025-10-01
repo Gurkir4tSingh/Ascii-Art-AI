@@ -1,1 +1,60 @@
 "# Ignore Python, Jupyter, Flask, React temp files" 
+```
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode / IDE settings
+.vscode/
+.idea/
+
+# Logs
+*.log
+*.out
+*.err
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Flask specific
+instance/
+*.db
+
+# React / Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+build/
+.cache/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Coverage / Testing
+htmlcov/
+.tox/
+.coverage
+.pytest_cache/
+
+# Misc
+*.bak
+*.swp
+```
