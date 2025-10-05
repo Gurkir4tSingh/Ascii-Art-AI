@@ -80,7 +80,7 @@ def train_model():
             total_loss += loss.item()
 
         avg_loss = total_loss / len(dataloader)
-        print(f"📅 Epoch [{epoch+1}/{EPOCHS}] → Loss: {avg_loss:.4f}")
+        print(f"Epoch [{epoch+1}/{EPOCHS}] → Loss: {avg_loss:.4f}")
 
     os.makedirs("model", exist_ok=True)
     torch.save(model.state_dict(), MODEL_SAVE_PATH)
