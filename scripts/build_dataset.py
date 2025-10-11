@@ -3,38 +3,31 @@ import json
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ASCII_DIR = os.path.join(ROOT_DIR, "data", "ascii_data")
-OUTPUT_FILE = os.path.join(ROOT_DIR, "data", "dataset.json")
-
+OUTPUT_PATH = os.path.join(ROOT_DIR, "data", "dataset.json")
 
 def build_dataset():
-    dataset = []
-
+    data = []
     for category in os.listdir(ASCII_DIR):
         category_path = os.path.join(ASCII_DIR, category)
         if not os.path.isdir(category_path):
             continue
 
-        for filename in os.listdir(category_path):
-            if not filename.endswith(".txt"):
-                continue
+        for fname in os.listdir(category_path):
+            if fname.endswith(".txt"):
+                fpath = os.path.join(category_path, fname)
+                with open(fpath, "r", encoding="utf-8") as f:
+                    content = f.read().strip()
+                    if content:
+                        data.append({
+                            "label": category,
+                            "ascii": content
+                        })
 
-            file_path = os.path.join(category_path, filename)
-            with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
-                art = f.read().strip()
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
 
-            if len(art) < 10:
-                continue  # skip tiny entries
-
-            dataset.append({
-                "label": category,
-                "filename": filename,
-                "ascii": art
-            })
-
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
-        json.dump(dataset, out, indent=2)
-
-    print(f"Built dataset with {len(dataset)} samples → {OUTPUT_FILE}")
+    print(f"Built dataset with {len(data)} samples → {OUTPUT_PATH}")
 
 if __name__ == "__main__":
     build_dataset()

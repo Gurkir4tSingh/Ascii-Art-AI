@@ -1,0 +1,111 @@
+                  ..&&&&&&&&&&&&&&&&&&..
+               .&&&&&&&&&&&&&&&&&&&&&&&&&&.
+            .&&############################&&.
+          .&&##%%%%%%%%%%%%%%%%%%%%%%%%%%%%##&&.
+        .&&##%%%$$$$$$$$$$$$$$$$$$$$$$$$$$%%%##&&.
+      .&&##%%$$@@@@@@@@@@@@@@@@@@@@@@@@@@@$$%%%##&&.
+     &&&##%%$$@@**************************@@$$%%##&&&
+    &&&##%%$$@@****                    ****@@$$%%##&&&
+   &&&##%%$$@@**                          **@@$$%%##&&&
+  &&&##%%$$@@**                            **@@$$%%##&&&
+  &&##%%$$@@**          H A P P Y           **@@$$%%##&&
+ _&&##%%$$@@**_                             **@@$$%%##&&
+|   G          |  S T .  P A T R I C K ' S  **@@$$%%##&&
+ |   O  L     |                             **@@$$%%##&&
+ |    O  U    |           D A Y !           **@@$$%%##&&
+/      D  C    \                            **@@$$%%##&&
+|          K   |                            **@@$$%%##&&
+_\____________/_____________________________**@@$$%%##&&______________
+Line art by Dan
+Rainbow "colors" by Tina Hesman
+Rainbow shape by F.L. Catalyst</pre></div><div class="border-header border-top p-3"><!-- 71161633/cats_incontent_1/cats_incontent_1 --><div data-fuse="22882339596"></div></div><div class="border-header border-top p-3"><pre class="pre-LG">                  \       \      `      /         /
+                                             '
+            \      `    \     `     '    /     /   `   '
+    \                       .  *  *  *  *  *  .     /
+         `     \    `    *  *  *  *  *  *  *  *  *       /
+   \                  * * * * * * * * * * * * * * *  '
+       \     `     @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @   /
+\  `             * * * * *             * * * * * * * * *   '  /
+           `   @ @ @ @ *                 '@@@@@@@@@@@@@@@
+      \      * * * * *                     * * * * * * * *  '
+  `        @ @ @ @ @        Come            @@@@@@@@@@@@@@@    /
+          * * * **      sit under the         * * * * * * * *
+\   `   @ @ @ @ @      rainbow & 'sides       @@@@@@@@@@@@@@@  '
+      * * * * *        the  Pot of Go          * * * * * * * * /
+ `   @ @ @ @ @             with me.            @@@@@@@@@@@@@@@ .
+    * * * * *                                  * * * * * * * *.
+\  @ @ @ @ @                                   @@@@@@@@@@@@@@@@
+  * * * * *      \---,                           `  `    '  '
+ @ @ @ @ @  ____/' \  /                        `   \   @   / '
+* * * * * /`  _ .~ ./\                           `   @ @ @  ' '
+  __    /  \ \   ^ '                           ` \ `@_@_@_@'/ '
+ (x \ ( \ _  \_\  \_\                             (         )
+    \ \/ / \/ `-'__`-'         _       `'          \ $ $ $ /
+ - - ~'- - - - (   @  )- --`'-   -  -    - -  - `'- --  ------
+         -    --``~~~''--          --            -
+                             -            ---        - -
+    --_-   ___  -      ---          --                  ---
+                  --             -       - -</pre></div>    </div>    <div class="text-center"><a href="/nature">&lt;&lt; Back to nature</a></div><div class="text-center mt-4"><a href="/ascii-draw-studio" class="btn btn-primary text-white px-4">Create your own ASCII Art</a></div><div class="text-center mt-3"><a href="/image-to-ascii" class="btn btn-primary text-white px-4">Convert Images to ASCII Art</a></div><div class="text-center mt-3"><a href="/text-to-ascii-art" class="btn btn-primary text-white px-4">Create ASCII Art from Text</a></div><footer class="footer text-center mt-5">
+    <hr class="repeat-hr my-1" data-content="^-" data-content-end="^" style="max-width: 850px;">
+    <small class="d-inline d-lg-block">The ASCII art of this website has been created by many different artists and credit has been given where the artist is known.</small>
+    <small>If you use ASCII artwork from here, please do not remove the artists name/initials if they are present.</small>
+    <nav class="nav justify-content-center flex-column flex-md-row mt-4">
+        <a class="nav-item nav-link" href="/about-ascii-art-archive">About ASCII Art Archive</a>
+        <a class="nav-item nav-link" href="/ascii-art-links">ASCII Art Links</a>
+        <a class="nav-item nav-link" href="/link-to-us">Link To Us</a>
+        <a class="nav-item nav-link" href="/acknowledgments">Acknowledgments</a>
+    </nav>
+    <nav class="nav justify-content-center flex-column flex-md-row">
+        <a class="nav-item nav-link" href="/cookie-policy">Cookie policy</a>
+        <a class="nav-item nav-link" href="/privacy-policy">Privacy policy</a>
+        <a class="nav-item nav-link" href="/terms-of-use">Terms of Use</a>
+        <a class="nav-item nav-link change-consent" href="#" onclick="window.__tcfapi('displayConsentUi', 2, function() {} );return false;" tabindex="0" href="#">Consent</a>
+    </nav>
+    <div class="mt-4">
+        Copyright &copy; 2025 <a href="http://www.injosoft.se/">Injosoft</a><span class="d-none d-sm-inline">. All Rights Reserved.</span>
+    </div>
+    <div class="social mt-4">
+        <a href="http://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.asciiart.eu%2F" class="facebook"><span class="fa-layers fa-2x"><i class="fa fa-circle"></i><i class="fab fa-facebook-f fa-inverse" data-fa-transform="shrink-3.5 down-1.6 right-1.25"></i></span></a>
+        <a href="http://twitter.com/share?url=https%3A%2F%2Fwww.asciiart.eu%2F&hashtags=ascii art" class="twitter"><span class="fa-layers fa-2x"><i class="fa fa-circle"></i><i class="fab fa-twitter fa-inverse" data-fa-transform="shrink-6 down-.25 right-.25"></i></span></a>
+        <a href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.asciiart.eu%2F" class="linkedin"><span class="fa-layers fa-2x"><i class="fa fa-circle"></i><i class="fab fa-linkedin-in fa-inverse" data-fa-transform="shrink-7 right-.25"></i></span></a>
+    </div>
+    <div class="mt-4"><small>Be kind!</small></div>
+</footer>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<script src="/js/bsadmin.js"></script>
+<script>
+    function getCharWidth(symbol, font = "monospace") {
+        const span = document.createElement("span");
+        span.style.visibility = "hidden";
+        span.style.position = "absolute";
+        span.style.whiteSpace = "nowrap";
+        span.style.fontFamily = font;
+        span.textContent = symbol;
+        document.body.appendChild(span);
+        const width = span.offsetWidth / symbol.length;
+        span.remove();
+        return width;
+    }
+    function fillRepeatHr() {
+        document.querySelectorAll('.repeat-hr').forEach(hr => {
+            const symbol = hr.dataset.content || "-";
+            const endSymbol = hr.dataset.contentEnd || "";
+            const charWidth = getCharWidth(symbol, getComputedStyle(hr).fontFamily);
+            const approxWidth = hr.clientWidth;
+            const repeatCount = Math.max(0, Math.floor((approxWidth + 0.5) / (symbol.length * charWidth))) - 1;
+            hr.setAttribute("data-fill", symbol.repeat(repeatCount) + endSymbol);
+        });
+    }
+    window.addEventListener('resize', fillRepeatHr);
+    window.addEventListener('orientationchange', fillRepeatHr);
+    document.addEventListener("DOMContentLoaded", function() {
+        fillRepeatHr();
+        document.getElementById("nature")?.classList.add("sel");
+    });
+</script>
+</body>
+</html>
