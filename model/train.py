@@ -7,18 +7,22 @@ from torch.utils.data import Dataset, DataLoader
 from torch import nn, optim
 from tqdm import tqdm
 
-# CONFIGURATION
+# CONFIG
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-DATASET_PATH = os.path.join(ROOT_DIR, "data", "dataset.json")
+DATA_DIRS = [
+    os.path.join(ROOT_DIR, "data", "ascii_data"),
+    os.path.join(ROOT_DIR, "data", "processed"),
+]
 MODEL_SAVE_PATH = os.path.join(ROOT_DIR, "model", "ascii_model.pth")
 VOCAB_SAVE_PATH = os.path.join(ROOT_DIR, "model", "vocab.json")
 
-BATCH_SIZE = 2
-EPOCHS = 30
-LR = 0.001
+BATCH_SIZE = 1
+EPOCHS = 60
+LR = 0.0005
 HIDDEN_DIM = 256
 EMBED_DIM = 64
 MAX_SEQ_LEN = 500
+MIN_LEN = 10  # keep small ASCII blocks
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Reproducibility
@@ -26,51 +30,55 @@ torch.manual_seed(42)
 np.random.seed(42)
 random.seed(42)
 
-# DATASET CLASS
+
+def collect_ascii_data():
+    """Collect all ASCII text from data/ascii_data and data/processed."""
+    ascii_pieces = []
+    for folder in DATA_DIRS:
+        if not os.path.exists(folder):
+            continue
+        for root, _, files in os.walk(folder):
+            for fname in files:
+                if fname.endswith(".txt"):
+                    path = os.path.join(root, fname)
+                    try:
+                        with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                            content = f.read().strip()
+                            if len(content) >= MIN_LEN:
+                                # limit overly large ASCII art
+                                ascii_pieces.append(content[:MAX_SEQ_LEN])
+                    except Exception as e:
+                        print(f"Skipping {fname}: {e}")
+    print(f"[INFO] Collected {len(ascii_pieces)} ASCII pieces from all data sources.")
+    return ascii_pieces
+
+
 class ASCIIDataset(Dataset):
-    def __init__(self, dataset_path):
-        if not os.path.exists(dataset_path):
-            raise FileNotFoundError(f"Dataset file not found: {dataset_path}")
+    def __init__(self, ascii_pieces):
+        if not ascii_pieces:
+            raise ValueError("No ASCII art samples found.")
 
-        with open(dataset_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        self.samples = []
-        for item in data:
-            art = item.get("ascii", "").strip()
-            label = item.get("label", "unknown")
-            if art:
-                art = art[:MAX_SEQ_LEN]
-                # Skip too-short samples (like 1 char)
-                if len(art) > 1:
-                    self.samples.append({"ascii": art, "label": label})
-
-        if not self.samples:
-            raise ValueError("No valid ASCII samples found in dataset.")
-
-        all_text = "".join([s["ascii"] for s in self.samples])
+        # Build vocab
+        all_text = "".join(ascii_pieces)
         chars = sorted(set(all_text))
         self.char_to_idx = {ch: i for i, ch in enumerate(chars)}
         self.idx_to_char = {i: ch for ch, i in self.char_to_idx.items()}
         self.vocab_size = len(chars)
+        self.samples = ascii_pieces
 
-        avg_len = np.mean([len(s["ascii"]) for s in self.samples])
-        print(f"[INFO] Loaded {len(self.samples)} samples | "
-              f"Vocab size: {self.vocab_size} | Avg length: {avg_len:.1f}")
+        avg_len = np.mean([len(s) for s in self.samples])
+        print(f"[INFO] Loaded {len(self.samples)} samples | Vocab size = {self.vocab_size} | Avg len = {avg_len:.1f}")
 
     def __len__(self):
         return len(self.samples)
 
     def __getitem__(self, idx):
-        text = self.samples[idx]["ascii"]
-        if len(text) <= 1:
-            # fallback, skip tiny sample
-            text = "??"
+        text = self.samples[idx]
         x = torch.tensor([self.char_to_idx[c] for c in text[:-1]], dtype=torch.long)
         y = torch.tensor([self.char_to_idx[c] for c in text[1:]], dtype=torch.long)
         return x, y
 
-# MODEL CLASS
+
 class ASCIIGenerator(nn.Module):
     def __init__(self, vocab_size, embed_dim=EMBED_DIM, hidden_dim=HIDDEN_DIM):
         super().__init__()
@@ -79,20 +87,13 @@ class ASCIIGenerator(nn.Module):
         self.fc = nn.Linear(hidden_dim, vocab_size)
 
     def forward(self, x, hidden=None):
-        if x.size(1) == 0:
-            raise ValueError("Received empty sequence for LSTM forward pass.")
         x = self.embed(x)
         out, hidden = self.lstm(x, hidden)
         out = self.fc(out)
         return out, hidden
 
-# COLLATE FUNCTION
-def collate_batch(batch, pad_token=0):
-    # Filter out empty sequences if any slipped through
-    batch = [(x, y) for x, y in batch if len(x) > 0 and len(y) > 0]
-    if not batch:
-        return torch.zeros((0, 1), dtype=torch.long), torch.zeros((0, 1), dtype=torch.long)
 
+def collate_batch(batch, pad_token=0):
     xs, ys = zip(*batch)
     max_len = max(len(x) for x in xs)
 
@@ -105,16 +106,12 @@ def collate_batch(batch, pad_token=0):
 
     return padded_x, padded_y
 
-# TRAINING FUNCTION
+
 def train_model():
-    dataset = ASCIIDataset(DATASET_PATH)
-    dataloader = DataLoader(
-        dataset,
-        batch_size=BATCH_SIZE,
-        shuffle=True,
-        collate_fn=lambda batch: collate_batch(batch, pad_token=0),
-        drop_last=False
-    )
+    ascii_pieces = collect_ascii_data()
+    dataset = ASCIIDataset(ascii_pieces)
+    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True,
+                            collate_fn=lambda b: collate_batch(b, pad_token=0))
 
     model = ASCIIGenerator(dataset.vocab_size).to(DEVICE)
     criterion = nn.CrossEntropyLoss()
@@ -128,24 +125,20 @@ def train_model():
         progress = tqdm(dataloader, desc=f"Epoch {epoch}/{EPOCHS}")
 
         for x, y in progress:
-            if x.size(1) == 0:
-                continue  # skip zero-length batch
-
             x, y = x.to(DEVICE), y.to(DEVICE)
             optimizer.zero_grad()
-
             output, _ = model(x)
-            loss = criterion(output.reshape(-1, dataset.vocab_size), y.reshape(-1))
+            loss = criterion(output.view(-1, dataset.vocab_size), y.view(-1))
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
-
             total_loss += loss.item()
             progress.set_postfix(loss=loss.item())
 
         avg_loss = total_loss / len(dataloader)
         print(f"Epoch {epoch}/{EPOCHS} | Avg Loss: {avg_loss:.4f}")
 
+    # Save model and vocab
     os.makedirs(os.path.join(ROOT_DIR, "model"), exist_ok=True)
     torch.save(model.state_dict(), MODEL_SAVE_PATH)
 
@@ -158,6 +151,7 @@ def train_model():
 
     print(f"\nModel saved to {MODEL_SAVE_PATH}")
     print(f"Vocabulary saved to {VOCAB_SAVE_PATH}")
+
 
 if __name__ == "__main__":
     train_model()
